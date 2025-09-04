@@ -1,6 +1,6 @@
 public class LockerTester {
     public static void main(String[] args) {
-        System.out.println("wobbly wiggly wobbly wiggly huuuuh wooaaaaaahhhh wooooaaaahhhhh 6 7");
+        System.out.println("41 6 7");
         Locker C300 = new Locker();
         C300.takeStuff();
         C300.unlock(true);

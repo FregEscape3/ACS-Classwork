@@ -7,6 +7,7 @@ public class Locker {
     private boolean locked;
     private double height;
     private double weight;
+    //this is the instructions for the traits of each bottle
 
 
     public Locker() {
@@ -18,14 +19,13 @@ public class Locker {
         locked = true;
         height = 2.67;
         weight = 65;
+        //Instructions for creating particular bottles (instances of the class)
+        //Need to set the variables declared earlier to a certain value
     }
 
     public void unlock(boolean locked) {
         if (locked == true) {
             locked = false;
-        }
-        else {
-            locked = true;
         }
     }
 
@@ -50,4 +50,5 @@ public class Locker {
         height = 0;
         return (condition + " " + locked + " " + height);
     }
+    //attention (Q, K ,V) = softmax(K^T * Q/sqrt(d_k))V
 }
