@@ -50,5 +50,17 @@ public class Locker {
         height = 0;
         return (condition + " " + locked + " " + height);
     }
+
+    public String toString() {
+        return (user + color + condition + material + number + locked + height + weight + "hi");
+    }
+
+    public boolean equals(Locker newLocker, Locker lockerOther) {
+        if (newLocker.user == lockerOther.user) { //got lazy and didn't include other stuff
+            return true;
+        } else {
+            return false;
+        }
+    }
     //attention (Q, K ,V) = softmax(K^T * Q/sqrt(d_k))V
 }
