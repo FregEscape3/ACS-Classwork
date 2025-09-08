@@ -55,8 +55,15 @@ public class Locker {
         return (user + color + condition + material + number + locked + height + weight + "hi");
     }
 
-    public boolean equals(Locker newLocker, Locker lockerOther) {
-        if (newLocker.user == lockerOther.user) { //got lazy and didn't include other stuff
+    public boolean equals(Locker lockerOther) {
+        if (this.user.equals(lockerOther.user) &&
+            this.color.equals(lockerOther.color) &&
+            this.condition.equals(lockerOther.condition) &&
+            this.material.equals(lockerOther.material) &&
+            this.number == lockerOther.number &&
+            this.locked == lockerOther.locked &&
+            this.height == lockerOther.height &&
+            this.weight == lockerOther.weight) {
             return true;
         } else {
             return false;
