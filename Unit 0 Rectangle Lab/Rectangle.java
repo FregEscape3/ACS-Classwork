@@ -6,6 +6,64 @@ public class Rectangle {
     private double Xrot;
     private double Yrot;
     private double degrees;
+    private double slope;
+    private double Yint;
+
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public double[] getXcoords() {
+        return Xcoords;
+    }
+
+    public void setXcoords(double[] xcoords) {
+        Xcoords = xcoords;
+    }
+
+    public double[] getYcoords() {
+        return Ycoords;
+    }
+
+    public void setYcoords(double[] ycoords) {
+        Ycoords = ycoords;
+    }
+
+    public double getXrot() {
+        return Xrot;
+    }
+
+    public void setXrot(double xrot) {
+        Xrot = xrot;
+    }
+
+    public double getYrot() {
+        return Yrot;
+    }
+
+    public void setYrot(double yrot) {
+        Yrot = yrot;
+    }
+
+    public double getDegrees() {
+        return degrees;
+    }
+
+    public void setDegrees(double degrees) {
+        this.degrees = degrees;
+    }
 
     public Rectangle() {
         length = 4;
@@ -25,19 +83,20 @@ public class Rectangle {
         this.Xrot = Xrotate;
         this.Yrot = Yrotate;
         this.degrees = degrees;
-    } 
-
-    public int getWidth() {
-        return width;
     }
 
-    public int getLength() {
-        return length;
+    public Rectangle(int newLength, int newWidth, double[] newXarray, double[] newYarray, double m, double b) {
+        this.length = newLength;
+        this.width = newWidth;
+        this.Xcoords = newXarray;
+        this.Ycoords = newYarray;
+        this.slope = m;
+        this.Yint = b;
     }
 
     public String toString() {
         return ("This rectangle has length " + length + " and width of " + width 
-            + ". The area is " + length * width);
+            + ". The area is " + length * width + ".");
     }
 
     public boolean equals(Rectangle rectOther) {
@@ -69,5 +128,15 @@ public class Rectangle {
             returnArray[i + 1] = Math.round((Yrot + (Xcoords[i / 2] - Xrot) * Math.sin(radians) + (Ycoords[i / 2] - Yrot) * Math.cos(radians)) * 100.0) / 100.0;
         }
         return returnArray;
+    }
+
+    public double[] flipRectangle() {
+        double [] flipArray = new double[8];
+        for (int i = 0; i < 8; i += 2) {
+            double tempVar = (Xcoords[i / 2] + (Ycoords[i / 2] - Yint) * slope)/(1 + Math.pow(slope, 2));
+            flipArray[i] = Math.round((2 * tempVar - Xcoords[i / 2]) * 100.0) / 100.0;
+            flipArray[i + 1] = Math.round((2 * tempVar * slope - Ycoords[i / 2] + 2 * Yint) * 100.0) / 100.0;
+        }
+        return flipArray;
     }
 }
