@@ -5,6 +5,8 @@ public class Student {
     private String name;
     private String id;
     private int grade;
+    private String latestOpp;
+    private String recentFriend;
 
     public String getName() {
         return name;
@@ -28,6 +30,22 @@ public class Student {
 
     public void setGrade(int grade) {
         this.grade = grade;
+    }
+
+    public String getLatestOpp() {
+        return latestOpp;
+    }
+
+    public void setLatestOpp(String latestOpp) {
+        this.latestOpp = latestOpp;
+    }
+
+    public String getRecentFriend() {
+        return recentFriend;
+    }
+
+    public void setRecentFriend(String recentFriend) {
+        this.recentFriend = recentFriend;
     }
 
     public Student(String name, int grade) {
@@ -67,5 +85,21 @@ public class Student {
         int id3 = numbers[1];
         int id4 = numbers[2];
         return (id1 + "" + id3 + "" + id4 + "-" + id2);
+    }
+
+    public String vibeCheck(Student other) {
+        if (this.latestOpp.equals(other.latestOpp)) {
+            this.recentFriend = other.name;
+            other.recentFriend = this.name;
+            String thing = (other.name + " and " + this.name + " are now homies. " 
+                    + "They will slime " + this.latestOpp + " in 67 hours.");
+            return thing;
+
+        } else {
+            String thing2 = (other.name + " did not pass the vibe check. " + this.name
+                    + " will slime them in 67 hours.");
+            return thing2;
+
+        }
     }
 }

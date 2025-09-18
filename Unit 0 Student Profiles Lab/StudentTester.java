@@ -14,6 +14,11 @@ public class StudentTester {
         alex.setGrade(12);
         System.out.println(joshua.equals(michael));
         System.out.println(alex.equals(kai));
+        Student p1 = new Student("p1", 11);
+        p1.setLatestOpp("Dr. Murphy");
+        Student p2 = new Student("p2", 12);
+        p2.setLatestOpp("Dr. Murphy");
+        System.out.println(p1.vibeCheck(p2));
         //The students should all be different, with 
         //Joshua and Michael becoming 11th and 9th graders,respectively,
         //while Kai and Alex becoming 12th grades.
