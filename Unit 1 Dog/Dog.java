@@ -12,7 +12,7 @@ public class Dog {
         this.ownerName = ownerName;
         this.age = age;
         this.dogId = dogId;
-        dogChar = generateDogChar();
+        this.dogChar = generateDogChar(this.dogId);
         dogTag = generateDogTag();
         stillInFacility = true;
     }
@@ -22,7 +22,7 @@ public class Dog {
         this.ownerName = "Joshua";
         this.age = 6;
         this.dogId = 670;
-        dogChar = generateDogChar();
+        this.dogChar = generateDogChar(this.dogId);
         dogTag = generateDogTag();
         stillInFacility = true;       
     }
@@ -75,7 +75,7 @@ public class Dog {
         this.dogTag = dogTag;
     }
 
-    public boolean isStillInFacility() {
+    public boolean getStillInFacility() {
         return stillInFacility;
     }
 
@@ -99,14 +99,28 @@ public class Dog {
         }
     }
 
-    public char generateDogChar() {
-        dogChar = (char) ('F' + (dogId / 100 + (dogId - dogId / 100) / 10 + dogId % 10) % 10);
-        System.out.println(dogChar); //for testing only
+    public static char generateDogChar(int dogId) {
+        char dogChar = (char) ('F' + (dogId / 100 + (dogId - dogId / 100) / 10 + dogId % 10) % 10);
         return dogChar;
     }
 
     public String generateDogTag() {
         dogTag = (dogId + "" + dogChar);
         return dogTag;
+    }
+
+    public String pickup(Dog dog, String personName) {
+        if (personName.equals(dog.ownerName)) {
+            dog.stillInFacility = false;
+            return (dog.name + " has been picked up by their" +
+                                " owner " + dog.ownerName + ".");
+        } else {
+            return ("You are not tuff SigmaEpstein. GET OUT! Safety First! :)");
+        }
+    }
+
+    public void checkIn(Dog dog, String personName) {
+        dog.stillInFacility = true;
+        dog.ownerName = personName;
     }
 }
