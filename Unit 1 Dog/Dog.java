@@ -12,8 +12,8 @@ public class Dog {
         this.ownerName = ownerName;
         this.age = age;
         this.dogId = dogId;
-        this.dogChar = generateDogChar(this.dogId);
-        dogTag = generateDogTag();
+        this.dogChar = PawesomeUtils.generateDogChar(this.dogId);
+        this.dogTag = PawesomeUtils.generateDogTag(this.dogId, this.dogChar);
         stillInFacility = true;
     }
 
@@ -22,8 +22,8 @@ public class Dog {
         this.ownerName = "Joshua";
         this.age = 6;
         this.dogId = 670;
-        this.dogChar = generateDogChar(this.dogId);
-        dogTag = generateDogTag();
+        this.dogChar = PawesomeUtils.generateDogChar(this.dogId);
+        this.dogTag = PawesomeUtils.generateDogTag(this.dogId, this.dogChar);
         stillInFacility = true;       
     }
 
@@ -97,16 +97,6 @@ public class Dog {
         } else {
             return false;
         }
-    }
-
-    public static char generateDogChar(int dogId) {
-        char dogChar = (char) ('F' + (dogId / 100 + (dogId - dogId / 100) / 10 + dogId % 10) % 10);
-        return dogChar;
-    }
-
-    public String generateDogTag() {
-        dogTag = (dogId + "" + dogChar);
-        return dogTag;
     }
 
     public String pickup(Dog dog, String personName) {
