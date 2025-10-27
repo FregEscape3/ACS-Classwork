@@ -1,8 +1,9 @@
 public class DogTester {
     public static void main(String[] args) {
         //Day 1
-        Dog dog1 = new Dog("Alex", "Bob", 41, 234);
-        Dog dog2 = new Dog("Michael", "Bob", 67, 123);
+        Dog dog1 = new Dog("Alex", "Bob", 41, 694);
+        Dog dog2 = new Dog("Michael", "Bob", 67, 99);
+        System.out.println(PawesomeUtils.validateDogTag(dog2));
         Dog dog3 = new Dog();
         System.out.println(dog1.getName() + " Should: Alex");
         System.out.println(dog2.getName() + " Should: Michael");
@@ -11,12 +12,13 @@ public class DogTester {
         System.out.println(dog1.getName() + " Should: Xela");
         System.out.println(dog1.getOwnerName() + " Should: Bob");
         dog1.setOwnerName("Alex");
+        dog2.setDogId(123);
         System.out.println(dog1.getOwnerName() + " Should: Alex");
-        System.out.println(dog1.getDogId() + " Should: 234");
+        System.out.println(dog2.getDogId() + " Should: 123");
         System.out.println(dog2.getDogChar() + " Should: L");
         System.out.println(dog2.getDogTag() + " Should: 123L");
         System.out.println(dog2.getStillInFacility() + " Should: true");
-        System.out.println(PawesomeUtils.generateDogTag(234, 'O') + " Should: 234O");
+        System.out.println(PawesomeUtils.generateDogTag(694, 'O') + " Should: 694O");
         System.out.println(PawesomeUtils.generateDogTag(123, 'L') + " Should: 123L");
         System.out.println(dog2.equals(dog3) + " Should: false");
         Dog dog4 = new Dog();
@@ -25,7 +27,7 @@ public class DogTester {
         dog4.toString();
 
         //Day 2
-        System.out.println(PawesomeUtils.generateDogChar(123) + " Should: L");
+        System.out.println(PawesomeUtils.generateDogChar(694) + " Should: O");
         System.out.println(PawesomeUtils.generateDogChar(456) + " Should: K");
         System.out.println(PawesomeUtils.generateDogChar(789) + " Should: J");
         Dog myDog = new Dog("Mr. Yang", "Maria", 12, 109);
@@ -46,7 +48,16 @@ public class DogTester {
         dog3.setDogId(10030);
         System.out.println(PawesomeUtils.validateDogTag(dog3) + " Should: false");
 
-
+        //Day 4
+        Dog dogA = new Dog("a", "b", 1, 123);
+        System.out.println(PawesomeUtils.convertAgeToHumanAge(dogA) + " Should: 15");
+        dogA.setAge(2);
+        System.out.println(PawesomeUtils.convertAgeToHumanAge(dogA) + " Should: 24");
+        dogA.setAge(5);
+        System.out.println(PawesomeUtils.convertAgeToHumanAge(dogA) + " Should: 39");
+        System.out.println(PawesomeUtils.convertAgeToDogYears(12) + " Should: 1");   
+        System.out.println(PawesomeUtils.convertAgeToDogYears(23) + " Should: 2");
+        System.out.println(PawesomeUtils.convertAgeToDogYears(49) + " Should: 7");  
 
     }
 }

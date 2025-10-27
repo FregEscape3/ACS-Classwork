@@ -11,10 +11,10 @@ public class Dog {
         this.name = name;
         this.ownerName = ownerName;
         this.age = age;
-        this.dogId = dogId;
+        this.dogId = PawesomeUtils.validateDogId(dogId);
         this.dogChar = PawesomeUtils.generateDogChar(this.dogId);
         this.dogTag = PawesomeUtils.generateDogTag(this.dogId, this.dogChar);
-        stillInFacility = true;
+        this.stillInFacility = true;
     }
 
     public Dog() {
@@ -56,7 +56,9 @@ public class Dog {
     }
 
     public void setDogId(int dogId) {
+        dogId = PawesomeUtils.validateDogId(dogId);
         this.dogId = dogId;
+        this.dogTag = PawesomeUtils.generateDogTag(this.dogId, PawesomeUtils.generateDogChar(this.dogId));
     }
 
     public char getDogChar() {
@@ -102,15 +104,20 @@ public class Dog {
     public String pickup(Dog dog, String personName) {
         if (personName.equals(dog.ownerName)) {
             dog.stillInFacility = false;
-            return (dog.name + " has been picked up by their" +
-                                " owner " + dog.ownerName + ".");
+            return (dog.name + " has been picked up by their"
+                    + " owner " + dog.ownerName + ".");
         } else {
             return ("You are not tuff SigmaEpstein. GET OUT! Safety First! :)");
         }
     }
 
     public void checkIn(Dog dog, String personName) {
-        dog.stillInFacility = true;
-        dog.ownerName = personName;
+        if (PawesomeUtils.validateDogTag(dog) == false) {
+            dog.stillInFacility = false;
+            System.out.println("You are a PILLOW! GET OUT!");
+        } else {
+            dog.stillInFacility = true;
+            dog.ownerName = personName;
+        }
     }
 }
