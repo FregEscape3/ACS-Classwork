@@ -2,11 +2,66 @@ public class Course {
     // instance variables
     private String courseName;
     private StudentRecord[] enrolledStudents;
+    private int maxEnrollment;
 
     // constructors
     public Course(String courseName, StudentRecord[] enrolledStudents) {
         this.courseName = courseName;
         this.enrolledStudents = enrolledStudents;
+    }
+
+    public Course(String courseName, int maxEnrollment) {
+        this.courseName = courseName;
+        this.maxEnrollment = maxEnrollment;
+        this.enrolledStudents = new StudentRecord[maxEnrollment];
+    }
+
+    public boolean isFull() {
+        for (int i = 0; i < enrolledStudents.length; i++) {
+            if (enrolledStudents[i] == null) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void enrollStudent(StudentRecord student) {
+        for (int i = 0; i < enrolledStudents.length; i++) {
+            if (enrolledStudents[i] == null) {
+                enrolledStudents[i] = student;
+                return;
+            }
+        }
+    }
+
+    public boolean dropStudent(StudentRecord student) {
+        for (int i = 0; i < enrolledStudents.length; i++) {
+            if (enrolledStudents[i] != null 
+                && enrolledStudents[i].getName().equals(student.getName())) {
+                enrolledStudents[i] = null;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int countEnrolledStudents() {
+        int count = 0;
+        for (int i = 0; i < enrolledStudents.length; i++) {
+            if (enrolledStudents[i] != null) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public void increaseClassSizeBy(int sizeIncrease) {
+        int count = 0;
+        StudentRecord[] record1 = new StudentRecord[sizeIncrease + enrolledStudents.length];
+        for (int i = 0; i < enrolledStudents.length; i++) {
+            record1[i] = enrolledStudents[i];
+        }
+        enrolledStudents = record1;
     }
 
     public String getCourseName() {
@@ -51,5 +106,4 @@ public class Course {
         }
         return (sum / enrolledStudents.length);
     }
-
 }
