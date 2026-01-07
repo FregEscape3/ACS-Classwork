@@ -72,5 +72,61 @@ public class Unit3ExercisesTester {
         // edge case: null array
         testArray1 = null;
         System.out.println("Expected 0: " + Unit3Exercises.sumEvenNumbers(testArray1));
+        // main case
+        int[] testArray2 = { 6, 7, 41 };
+        System.out.println("Expected 1766: " + Unit3Exercises.calculateSumOfSquares(testArray2));
+        // edge case: null array
+        // testArray2 = null;
+        // System.out.println("Expected error message: " +
+        // Unit3Exercises.calculateSumOfSquares(testArray2));
+        // main case
+        int testInt = 41;
+        System.out.println("Expected 165580141: " + Unit3Exercises.getNthFibonacci(testInt));
+        // edge case: negative #
+        // testInt = -5;
+        // System.out.println("Expected error message: " +
+        // Unit3Exercises.getNthFibonacci(testInt));
+        // main case
+        int[] testArray3 = { 10, 5, 6, 67, 41 };
+        System.out.print("Expected {67, 41, 10, 6, 5}: ");
+        Unit3Exercises.sortArrayDescending(testArray3);
+        // // edge case: null array
+        // testArray3 = null;
+        // System.out.print("Expected error message: ");
+        // Unit3Exercises.sortArrayDescending(testArray3);
+        // main case: longest word
+        String words = "Michael is a bum, and Alex has pneumonoultramicroscopicsilicovolcanoconiosis";
+        System.out.println(
+                "Expected pneumonoultramicroscopicsilicovolcanoconiosis: " + Unit3Exercises.findLongestWord(words));
+        // main case: equally long word
+        words = "Michael is a bum, and Alex has laptops";
+        System.out.println(
+                "Expected Michael: " + Unit3Exercises.findLongestWord(words));
+        // edge case: null/empty input
+        // words = null;
+        // System.out.println("Expected error message: " +
+        // Unit3Exercises.findLongestWord(words));
+        // main case
+        double principal = 100, rate = 67;
+        int years = 5;
+        System.out.println("Expected 1298.91986: " + Unit3Exercises.calculateInterest(principal, rate, years));
+        // edge case: Negative principal
+        principal = -5;
+        System.out.println("Expected error message: " + Unit3Exercises.calculateInterest(principal, rate, years));
+        // edge case: Negative interest
+        principal = 100;
+        rate = -5;
+        System.out.println("Expected error message: " + Unit3Exercises.calculateInterest(principal, rate, years));
+        // edge case: Negative years
+        years = -5;
+        rate = 67;
+        System.out.println("Expected error message: " + Unit3Exercises.calculateInterest(principal, rate, years));
+
+        // 1. **Main Case** - Choose appropriate parameters, manually calculate the
+        // expected value, and verify that the code produces the correct output. Test
+        // with at least 2 different sets of values.
+        // 2. **Edge Case** - The principal amount cannot be negative.
+        // 3. **Edge Case** - The interest rate cannot be negative.
+        // 4. **Edge Case** - The number of years must be a positive integer.
     }
 }
