@@ -121,12 +121,37 @@ public class Unit3ExercisesTester {
         years = -5;
         rate = 67;
         System.out.println("Expected error message: " + Unit3Exercises.calculateInterest(principal, rate, years));
-
-        // 1. **Main Case** - Choose appropriate parameters, manually calculate the
-        // expected value, and verify that the code produces the correct output. Test
-        // with at least 2 different sets of values.
-        // 2. **Edge Case** - The principal amount cannot be negative.
-        // 3. **Edge Case** - The interest rate cannot be negative.
-        // 4. **Edge Case** - The number of years must be a positive integer.
+        // main case
+        String testString = "100";
+        System.out.println("Expected 100: " + Unit3Exercises.parsePositiveInteger(testString));
+        // edge case: negative #
+        testString = "-50";
+        System.out.println("Expected 1: " + Unit3Exercises.parsePositiveInteger(testString));
+        // main case
+        String[] bums = { "bum0", "bum1", "bum2", "bum3" };
+        int index1 = 2;
+        System.out.println("Expected bum2: " + Unit3Exercises.getArrayElement(bums, index1));
+        // edge case: out of bounds
+        index1 = 67;
+        System.out.println("Expected null: " + Unit3Exercises.getArrayElement(bums, index1));
+        // main case
+        int trash = 45441081;
+        System.out.println("Expected 6741.0: " + Unit3Exercises.calculateSquareRoot(trash));
+        // edge case: negative
+        trash = -67;
+        System.out.println("Expected NaN: " + Unit3Exercises.calculateSquareRoot(trash));
+        // main case
+        int[] chopped = { 10, 41, 67, 2 };
+        System.out.println("Expected 120: " + Unit3Exercises.sumArrayElements(chopped));
+        // edge case: null array
+        chopped = null;
+        System.out.println("Expected 0: " + Unit3Exercises.sumArrayElements(chopped));
+        // main case
+        int base = 5;
+        int power = 3;
+        System.out.println("Expected 125: " + Unit3Exercises.sumArrayElements(chopped));
+        // edge case: negative exponent
+        power = -5;
+        System.out.println("Expected 1: " + Unit3Exercises.sumArrayElements(chopped));
     }
 }

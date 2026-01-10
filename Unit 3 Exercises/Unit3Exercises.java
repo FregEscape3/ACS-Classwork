@@ -132,7 +132,7 @@ public class Unit3Exercises {
 
     public static String findLongestWord(String sentence) {
         if (sentence == null || sentence == "") {
-            throw new NullPointerException("You are trash cuz ur empty");
+            throw new NullPointerException("ts is empty/null");
         }
         String[] words = sentence.split(" ");
         String longestWord = "";
@@ -146,11 +146,68 @@ public class Unit3Exercises {
 
     public static double calculateInterest(double principal, double rate, int years) {
         if (principal < 0 || rate < 0 || years <= 0) {
-            throw new IllegalArgumentException("Kill yourself!");
+            throw new IllegalArgumentException("negative numbers are NOT allowed");
         }
         for (int i = 0; i < years; i++) {
             principal += principal * (rate / 100);
         }
         return principal;
+    }
+
+    public static int parsePositiveInteger(String str) {
+        int number = Integer.parseInt(str);
+        if (number < 0) {
+            try {
+                str = "false string";
+                number = Integer.parseInt(str);
+            } catch (Exception e) {
+                System.out.println(e);
+                return 1;
+            }
+        }
+        return number; // Method should return 1 if it's negative
+    }
+
+    public static String getArrayElement(String[] arr, int index) {
+        try {
+            String temp = arr[index];
+        } catch (Exception e) {
+            System.out.println(e + "; Null array bruzz");
+            return null;
+        }
+        return arr[index];
+    }
+
+    public static double calculateSquareRoot(int number) {
+        try {
+            Math.sqrt(number);
+        } catch (Exception e) {
+            System.out.println(e + "; Negative number bro");
+            return Double.NaN;
+        }
+        return Math.sqrt(number);
+    }
+
+    public static int sumArrayElements(int[] array) {
+        int sum = 0;
+        try {
+            for (int i = 0; i < array.length; i++) {
+                sum += array[i];
+            }
+        } catch (Exception e) {
+            System.out.println(e + "; You are very null");
+            return 0;
+        }
+        return sum;
+    }
+
+    public static double calculatePower(double base, int exponent) {
+        try {
+            Math.pow(base, exponent);
+        } catch (Exception e) {
+            System.out.println(e + "; Negative exponent bro");
+            return 1;
+        }
+        return Math.pow(base, exponent);
     }
 }
