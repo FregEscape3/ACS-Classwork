@@ -72,7 +72,7 @@ public class Student {
         assignments[assignmentCount] = new Assignment(title, description);
         return assignments[assignmentCount++];
     } // (no tester)
-
+    
     private static boolean nameExists(String name) {
         for (int i = 0; i < NAME_COUNT; i++) {
             if (NAMES_IN_USE[i].equals(name)) {
