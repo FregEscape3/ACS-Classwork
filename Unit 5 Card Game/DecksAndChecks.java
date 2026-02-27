@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class DeckAndChecks {
+public class DecksAndChecks {
 
     // ----------------------------
     // CHECKERS (students implement)
@@ -21,7 +21,9 @@ public class DeckAndChecks {
     public static boolean checkNoMoreThanThreeAbilityCards(ArrayList<Card> deck) {
         int sum = 0;
         for (Card card : deck) {
-            sum += card.abilityCount();
+            if (card.hasBastion() == true || card.hasCleave() == true || card.hasRipple() == true) {
+                sum++;
+            }
         }
         if (sum > 3) {
             return false;
@@ -38,9 +40,11 @@ public class DeckAndChecks {
         for (Card card : deck) {
             if (card.hasBastion() == true) {
                 thing++;
-            } else if (card.hasCleave() == true) {
+            }
+            if (card.hasCleave() == true) {
                 thing1++;
-            } else if (card.hasRipple() == true) {
+            }
+            if (card.hasRipple() == true) {
                 thing2++;
             }
         }
@@ -88,93 +92,93 @@ public class DeckAndChecks {
     public static ArrayList<Card> buildDefaultDeck() {
         ArrayList<Card> deck = new ArrayList<>();
         NamedCard bums1 = new NamedCard("bums1", CardType.GRANITE, 3, 3, false, false, false);
-        NamedCard bums2 = new NamedCard("bums1", CardType.GRANITE, 3, 3, false, false, false);
-        NamedCard bums3 = new NamedCard("bums1", CardType.PARCHMENT, 3, 3, false, false, false);
-        NamedCard bums4 = new NamedCard("bums1", CardType.PARCHMENT, 3, 3, false, false, false);
-        NamedCard bums5 = new NamedCard("bums1", CardType.BLADE, 3, 3, false, false, false);
+        NamedCard bums2 = new NamedCard("bums2", CardType.GRANITE, 3, 3, false, false, false);
+        NamedCard bums3 = new NamedCard("bums3", CardType.PARCHMENT, 3, 3, false, false, false);
+        NamedCard bums4 = new NamedCard("bums4", CardType.PARCHMENT, 3, 3, false, false, false);
+        NamedCard bums5 = new NamedCard("bums5", CardType.BLADE, 3, 3, false, false, false);
         deck.add(bums1);
-        deck.add(bums1);
-        deck.add(bums1);
-        deck.add(bums1);
-        deck.add(bums1);
-        return null;
+        deck.add(bums2);
+        deck.add(bums3);
+        deck.add(bums4);
+        deck.add(bums5);
+        return deck;
     }
 
     // Prompts the user 5 times using Scanner and validates inputs.
     // Required prompt order per card:
     // name, type, strength, toughness, bastion(y/n), ripple(y/n), cleave(y/n)
     public static ArrayList<Card> buildUserDeck(Scanner sc) {
-        Scanner keyboard = new Scanner(System.in);
         ArrayList<Card> deck = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             int thing = 0;
             int thing1 = 0;
             int thing2 = 0;
-            String name = keyboard.nextLine();
-            if (name.indexOf(" ") != -1) {
+            String name = sc.nextLine();
+            while (name.indexOf(" ") != -1) {
                 System.out.println("Bum!");
-                name = keyboard.nextLine();
+                name = sc.nextLine();
             }
-            String type = keyboard.nextLine();
-            if (type.toLowerCase() != "granite" && type.toLowerCase() != "parchment" && type.toLowerCase() != "blade") {
+            String type = sc.nextLine();
+            while (!type.toLowerCase().equals("granite") && !type.toLowerCase().equals("parchment")
+                    && !type.toLowerCase().equals("blade")) {
                 System.out.println("Bum!");
-                type = keyboard.nextLine();
+                type = sc.nextLine();
             }
-            int strength = keyboard.nextInt();
-            keyboard.nextLine();
-            if (strength > 6 || strength < 1) {
+            int strength = sc.nextInt();
+            sc.nextLine();
+            while (strength > 6 || strength < 1) {
                 System.out.println("Bum!");
-                strength = keyboard.nextInt();
-                keyboard.nextLine();
+                strength = sc.nextInt();
+                sc.nextLine();
             }
-            int toughness = keyboard.nextInt();
-            keyboard.nextLine();
-            if (toughness > 6 || toughness < 1) {
+            int toughness = sc.nextInt();
+            sc.nextLine();
+            while (toughness > 6 || toughness < 1) {
                 System.out.println("Bum!");
-                toughness = keyboard.nextInt();
-                keyboard.nextLine();
+                toughness = sc.nextInt();
+                sc.nextLine();
             }
-            String bastion = keyboard.nextLine();
-            while (bastion != "y" && bastion != "n") {
+            String bastion = sc.nextLine();
+            while (!bastion.equals("y") && !bastion.equals("n")) {
                 System.out.println("Bum!");
-                bastion = keyboard.nextLine();
+                bastion = sc.nextLine();
             }
-            if (bastion == "y") {
+            if (bastion.equals("y")) {
                 thing++;
                 while (thing > 1) {
                     System.out.println("Bum!");
-                    bastion = keyboard.nextLine();
-                    if (bastion == "n") {
+                    bastion = sc.nextLine();
+                    if (bastion.equals("n")) {
                         thing = 1;
                     }
                 }
             }
-            String ripple = keyboard.nextLine();
-            while (ripple != "y" && ripple != "n") {
+            String ripple = sc.nextLine();
+            while (!ripple.equals("y") && !ripple.equals("n")) {
                 System.out.println("Bum!");
-                ripple = keyboard.nextLine();
+                ripple = sc.nextLine();
             }
-            if (ripple == "y") {
+            if (ripple.equals("y")) {
                 thing1++;
                 while (thing1 > 1) {
                     System.out.println("Bum!");
-                    ripple = keyboard.nextLine();
-                    if (ripple == "n") {
+                    ripple = sc.nextLine();
+                    if (ripple.equals("n")) {
                         thing1 = 1;
                     }
                 }
             }
-            String cleave = keyboard.nextLine();
-            while (cleave != "y" && cleave != "n") {
+            String cleave = sc.nextLine();
+            while (!cleave.equals("y") && !cleave.equals("n")) {
                 System.out.println("Bum!");
-                cleave = keyboard.nextLine();
+                cleave = sc.nextLine();
             }
-            if (cleave == "y") {
+            if (cleave.equals("y")) {
                 thing2++;
                 while (thing2 > 1) {
                     System.out.println("Bum!");
-                    cleave = keyboard.nextLine();
-                    if (cleave == "n") {
+                    cleave = sc.nextLine();
+                    if (cleave.equals("n")) {
                         thing2 = 1;
                     }
                 }
