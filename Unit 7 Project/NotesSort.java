@@ -9,7 +9,11 @@ public class NotesSort {
         this.NotesList = NotesList;
     }
 
-    public ArrayList<Note> sortByUnit() {
+    public ArrayList<Note> getNotesList() {
+        return NotesList;
+    }
+
+    public void sortByUnit() {
         for (int i = 0; i < NotesList.size(); i++) {
             int minIndex = i;
             for (int j = i + 1; j < NotesList.size(); j++) {
@@ -21,11 +25,9 @@ public class NotesSort {
             NotesList.set(i, NotesList.get(minIndex));
             NotesList.set(minIndex, temp);
         }
-
-        return NotesList;
     }
 
-    public ArrayList<Note> sortByPriority() {
+    public void sortByPriority() {
         for (int i = 0; i < NotesList.size(); i++) {
             int minIndex = i;
             for (int j = i + 1; j < NotesList.size(); j++) {
@@ -37,11 +39,9 @@ public class NotesSort {
             NotesList.set(i, NotesList.get(minIndex));
             NotesList.set(minIndex, temp);
         }
-
-        return NotesList;
     }
 
-    public ArrayList<Note> sortByDifficulty() {
+    public void sortByDifficulty() {
         for (int i = 0; i < NotesList.size(); i++) {
             if (NotesList.get(i) instanceof MathNote) {
                 int minIndex = i;
@@ -58,7 +58,15 @@ public class NotesSort {
                 NotesList.set(minIndex, temp);
             }
         }
+    }
 
-        return NotesList;
+    public ArrayList<Note> filterDone() {
+        ArrayList<Note> output = new ArrayList<>();
+        for (Note note : NotesList) {
+            if (note.isDone()) {
+                output.add(note);
+            }
+        }
+        return output;
     }
 }
