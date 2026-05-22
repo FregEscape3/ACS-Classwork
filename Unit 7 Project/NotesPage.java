@@ -72,7 +72,6 @@ public class NotesPage {
         ArrayList<Note> doneNotes = allNotesFilterTemp.filterDone();
         ArrayList<Note> mathNotes = new ArrayList<>();
         ArrayList<Note> scienceNotes = new ArrayList<>();
-
         for (int i = 0; i < doneNotes.size(); i++) {
             Note note = doneNotes.get(i);
             if (note instanceof MathNote) {
@@ -81,23 +80,19 @@ public class NotesPage {
                 scienceNotes.add(note);
             }
         }
-
         NotesSort mathSort = new NotesSort(mathNotes);
         mathSort.sortByUnit();
         NotesSort scienceSort = new NotesSort(scienceNotes);
         scienceSort.sortByUnit();
-
         String output = "";
         for (int i = 0; i < mathNotes.size(); i++) {
             Note note = mathNotes.get(i);
             output += note.getTitle() + " - " + note.getTopic() + " Unit " + note.getUnit() + "\n";
         }
-
         for (int i = 0; i < scienceNotes.size(); i++) {
             Note note = scienceNotes.get(i);
             output += note.getTitle() + " - " + note.getTopic() + " Unit " + note.getUnit() + "\n";
         }
-
         return output;
     }
 }

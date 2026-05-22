@@ -44,18 +44,18 @@ public class NotesSort {
     public void sortByDifficulty() {
         for (int i = 0; i < NotesList.size(); i++) {
             if (NotesList.get(i) instanceof MathNote) {
-                int minIndex = i;
+                int maxIndex = i;
                 for (int j = i + 1; j < NotesList.size(); j++) {
                     if (NotesList.get(j) instanceof MathNote
-                            && ((MathNote) NotesList.get(j)).getDifficulty() < ((MathNote) NotesList.get(minIndex))
+                            && ((MathNote) NotesList.get(j)).getDifficulty() > ((MathNote) NotesList.get(maxIndex))
                                     .getDifficulty()) {
-                        minIndex = j;
+                        maxIndex = j;
                     }
                 }
 
                 Note temp = NotesList.get(i);
-                NotesList.set(i, NotesList.get(minIndex));
-                NotesList.set(minIndex, temp);
+                NotesList.set(i, NotesList.get(maxIndex));
+                NotesList.set(maxIndex, temp);
             }
         }
     }

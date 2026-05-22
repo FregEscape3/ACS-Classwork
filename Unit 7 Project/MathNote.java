@@ -27,12 +27,12 @@ public class MathNote extends Note {
             }
             int amp2 = rand.nextInt(1, 6);
             int amp3 = rand.nextInt(-5, 6);
-            while (amp2 % amp3 == 0 || amp3 == 0) {
+            while (amp3 == 0 || amp2 % amp3 == 0) {
                 amp2 = rand.nextInt(1, 6);
                 amp3 = rand.nextInt(-5, 6);
             }
             int shift1 = rand.nextInt(-6, 7);
-            while (shift1 == 5 || shift1 == 0) {
+            while (shift1 == 5 || shift1 == 0 || shift1 == 1 || shift1 == -1) {
                 shift1 = rand.nextInt(-6, 7);
             }
             int shift2 = rand.nextInt(1, 6);
@@ -54,7 +54,7 @@ public class MathNote extends Note {
                 trigType = "cot";
             }
             int translation = rand.nextInt(-6, 7);
-            return "" + amp1 + "(" + amp2 + "+ " + trigType + " " + shift2 + "\u03C0/" + shift1 + ") + " + translation;
+            return "" + amp1 + trigType + "(" + amp2 + "(x + " + shift2 + "\u03C0/" + shift1 + ") + " + translation;
         } else if (type.equals("invtrig")) {
             String trigType = "";
             int amp1 = rand.nextInt(-5, 6);
@@ -63,12 +63,12 @@ public class MathNote extends Note {
             }
             int amp2 = rand.nextInt(-5, 6);
             int amp3 = rand.nextInt(-5, 6);
-            while (amp2 % amp3 == 0 || amp2 == 0 || amp3 == 0) {
+            while (amp2 == 0 || amp3 == 0 || amp2 % amp3 == 0) {
                 amp2 = rand.nextInt(-5, 6);
                 amp3 = rand.nextInt(-5, 6);
             }
             int shift1 = rand.nextInt(-6, 7);
-            while (shift1 == 5 || shift1 == 0) {
+            while (shift1 == 5 || shift1 == 0 || shift1 == 1 || shift1 == -1) {
                 shift1 = rand.nextInt(-6, 7);
             }
             int shift2 = rand.nextInt(-6, 7);
@@ -84,16 +84,16 @@ public class MathNote extends Note {
                 trigType = "arctan";
             }
             int translation = rand.nextInt(-6, 6);
-            return "" + amp1 + "(" + amp2 + "+ " + trigType + " " + shift2 + "/" + shift1 + ") + " + translation;
+            return "" + amp1 + trigType + "(" + amp2 + "(x + " + shift2 + "\u03C0/" + shift1 + ") + " + translation;
         } else if (type.equals("polynomial")) {
             String output = "";
             int coefficient1 = rand.nextInt(1, 8);
             int coefficient2 = rand.nextInt(-8, 9);
-            if (coefficient1 % coefficient2 == 0) {
+            while (coefficient2 == 0 || coefficient1 % coefficient2 == 0) {
                 coefficient1 = rand.nextInt(1, 8);
                 coefficient2 = rand.nextInt(-8, 9);
             }
-            output += coefficient1 + "/" + coefficient2;
+            output += "(" + coefficient1 + "/" + coefficient2 + ")";
             int degree = rand.nextInt(2, 5);
             for (int i = 0; i < degree; i++) {
                 int root = rand.nextInt(-10, 11);
