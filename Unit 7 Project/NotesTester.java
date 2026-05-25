@@ -171,6 +171,18 @@ public class NotesTester {
         checkEquals("Hard Math, Medium Math, Easy Math", titles(difficultyNotes),
                 "sortByDifficulty sorts MathNotes from hardest to easiest");
 
+        ArrayList<Note> duplicateNotes = new ArrayList<>();
+        Note originalNote = new Note("Limits", "Calculus", 1, 10);
+        Note sameTitleAndTopic = new Note("limits", "calculus", 2, 10);
+        Note sameTitleDifferentTopic = new Note("Limits", "Precalculus", 1, 10);
+        NotesSort duplicateSort = new NotesSort(duplicateNotes);
+        checkTrue(duplicateSort.addNote(originalNote), "addNote adds a new note");
+        checkFalse(duplicateSort.addNote(sameTitleAndTopic),
+                "addNote rejects duplicate titles in the same topic");
+        checkTrue(duplicateSort.addNote(sameTitleDifferentTopic),
+                "addNote allows the same title in a different topic");
+        checkEquals(2, duplicateNotes.size(), "addNote keeps rejected duplicates out of the list");
+
         unit1.setDone(true);
         unit3.setDone(true);
         ArrayList<Note> doneNotes = unitSort.filterDone();

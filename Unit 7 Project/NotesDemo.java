@@ -111,7 +111,6 @@ public class NotesDemo {
             } else {
                 System.out.println("Skipping website demo because that topic is not supported.");
             }
-
             System.out.println("\nThank you for watching!");
         } else {
             System.out.println("Live Demo!\n");
@@ -130,15 +129,22 @@ public class NotesDemo {
                 int unit = scan.nextInt();
                 scan.nextLine();
                 Note newNote;
+                boolean addedNote;
                 if (noteType.equals("math")) {
                     System.out.print("Difficulty from 1 to 5: ");
                     int difficulty = scan.nextInt();
                     scan.nextLine();
                     newNote = new MathNote(title, topic, unit, difficulty);
-                    mathNotes.add(newNote);
+                    NotesSort mathAdder = new NotesSort(mathNotes);
+                    addedNote = mathAdder.addNote(newNote);
                 } else {
                     newNote = new ScienceNote(title, topic, unit);
-                    scienceNotes.add(newNote);
+                    NotesSort scienceAdder = new NotesSort(scienceNotes);
+                    addedNote = scienceAdder.addNote(newNote);
+                }
+                if (!addedNote) {
+                    System.out.println("That note already exists in that topic, so it was not added.");
+                    continue;
                 }
                 System.out.print("Is this note already done? (yes/no): ");
                 String doneAnswer = scan.nextLine().toLowerCase();
@@ -182,7 +188,8 @@ public class NotesDemo {
             System.out.print(notesPage.printPriority("math"));
             System.out.println("\n5. Notes I have already finished\n");
             System.out.print(notesPage.printDone());
-            System.out.print("\nDo you want to generate a website note for one of your science notes? (yes/no) (if you only created math notes just type in no): ");
+            System.out.print(
+                    "\nDo you want to generate a website note for one of your science notes? (yes/no) (if you only created math notes just type in no): ");
             String websiteAnswer = scan.nextLine().toLowerCase();
             if (websiteAnswer.equals("yes") || websiteAnswer.equals("y")) {
                 System.out.print("Website note title: ");

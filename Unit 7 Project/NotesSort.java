@@ -13,6 +13,17 @@ public class NotesSort {
         return NotesList;
     }
 
+    public boolean addNote(Note newNote) {
+        for (Note note : NotesList) {
+            if (note.getTitle().toLowerCase().equals(newNote.getTitle().toLowerCase())
+                    && note.getTopic().toLowerCase().equals(newNote.getTopic().toLowerCase())) {
+                return false;
+            }
+        }
+        NotesList.add(newNote);
+        return true;
+    }
+
     public void sortByUnit() {
         for (int i = 0; i < NotesList.size(); i++) {
             int minIndex = i;
